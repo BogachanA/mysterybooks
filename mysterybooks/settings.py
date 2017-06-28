@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'store',
     'registration',
 )
@@ -65,12 +66,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'mysterybooks.wsgi.application'
+
+
+AUTHENTICATION_BACKENDS=(
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 # Database
@@ -116,3 +125,12 @@ EMAIL_HOST_PASSWORD="bookwormbogi"
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 DEFAULT_FROM_EMAIL="books@mysterybooks.com"
+
+
+#Social Auth Facebook
+SOCIAL_AUTH_FACEBOOK_KEY='1092635974214631'
+SOCIAL_AUTH_FACEBOOK_SECRET='9b62a27f7083531cce336e6a74f518b7'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
