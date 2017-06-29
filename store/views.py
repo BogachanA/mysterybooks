@@ -6,11 +6,24 @@ def index(request):
     return render(request, 'template.html')
 
 def store(request):
-    count=Book.objects.all().count()
+    books=Book.objects.all()
+
     context={
-        'count':count,
+        'books':books,
     }
+
+    #This is a demonstration for session variables
+    '''
     request.session['location']="unknown"
     if request.user.is_authenticated():
         request.session['location'] = "Earth"
+    '''
+    #Then if you want to include the variable in site, add it to context variables
+
     return render(request, 'base.html', context)
+
+def book_details(request, book_id):
+    context={
+        'book':Book.objects.get(pk=book_id),
+    }
+    return render(request,'store/detail.html', context)
