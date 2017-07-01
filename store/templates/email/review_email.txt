@@ -1,0 +1,10 @@
+Hello {{username}}, thanks for your review!.
+
+As this was your fifth review, we would like to gift you something as a thank you present!
+
+Here is your discount code: {{code}},
+With this code, you can get {{discount}}% off of your next purchase!
+
+See you around.
+
+-Mystery Books Team

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Author, BookOrder, Cart
+from .models import Book, Author, BookOrder, Cart, Review
 # Register your models here.
 
 class BookAdmin(admin.ModelAdmin):
@@ -17,7 +17,12 @@ class BookOrderAdmin(admin.ModelAdmin):
 class CartAdmin(admin.ModelAdmin):
     list_display =  ('user', 'active', 'order_date')
 
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('book', 'user')
+
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author,AuthorAdmin)
 admin.site.register(BookOrder,BookOrderAdmin)
 admin.site.register(Cart,CartAdmin)
+admin.site.register(Review,ReviewAdmin)
