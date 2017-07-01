@@ -48,7 +48,7 @@
 						    key: 'pk_test_ZeZS4VuxpAu0fSTzQWkLaTv7',
 							token: function(token) {
 							    $.post("{% url 'checkout' 'stripe' %}", {'stripeToken': token.id, 'csrfmiddlewaretoken': csrftoken}, function(data) {
-								    window.location.replace(data['redirect_url']):
+								    window.location.replace(data['redirect_url']);
 								});
 							}
 						});

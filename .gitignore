@@ -154,3 +154,7 @@ fabric.properties
 
 #Compiled static assets
 /static
+
+#Media files
+/media
+

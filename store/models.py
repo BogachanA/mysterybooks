@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-
 def cover_upload_path(instance, filename):
     return '/'.join(['books', str(instance.id), filename])
 
