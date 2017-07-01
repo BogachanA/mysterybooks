@@ -70,13 +70,14 @@
             <div class="row">
                 {% block body %}
                     <div class="col-md-8 col-md-offset-2 col-sm-12 maincontent">
-                        <div style="text-align:center"><h3> Welcome to our store! </h3></div>
+                        <div style="text-align:center;margin-bottom:20px"><h3> Welcome to our store! </h3></div>
                         {% for book in books %}
                             <div class="storefront_book_display">
                                 <a href="{% url 'book_details' book.id %}">
-                                    <img src="{{ MEDIA_URL}}{{book.cover_image}}">
+                                    <img src="{{ MEDIA_URL}}{{book.cover_image}}" width="170px" height="260px">
                                     <span class="storefront_book_title">{{book.title}}</span>
                                     <span class="storefront_book_author">{{book.author}}</span>
+                                    <span class="storefront_book_price">{{book.price}}$</span>
                                 </a>
                                 {% if request.user.is_authenticated %}
                                     <span class="storefront_add_to_cart">
