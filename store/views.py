@@ -71,7 +71,7 @@ def book_details(request, book_id):
                 form = ReviewForm()
                 context['form']=form
     context['reviews'] = book.review_set.all()
-    geo_info = GeoIP().city(request.META.get('REMOTE_ADDR'))
+    geo_info = GeoIP().city(request.META.get('REMOTE_ADDR', None))
     if not geo_info:
         geo_info = GeoIP().city("72.14.207.99")
     context['geo_info']=geo_info
@@ -228,7 +228,7 @@ def process_order(request, processor):
     if request.user.is_authenticated():
         if processor == "paypal":
             payment_id=request.GET.get('payment_id')
-            cart=Cart.objects.filter(payment_id=payment_id)
+            cart=Cart.objects.filter(payment_id=payment_id) #FIXME cart items missing after paypal redirect
             orders=BookOrder.objects.filter(cart=cart)
             total=0
             for order in orders:
