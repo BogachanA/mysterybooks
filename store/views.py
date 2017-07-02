@@ -11,12 +11,19 @@ from django.template import Context
 from django.template.loader import render_to_string
 import string, random
 from django.contrib.gis.geoip import GeoIP
+import logging
+
+logger=logging.getLogger(__name__)
 
 
 def index(request):
     return render(request, 'template.html')
 
 def store(request):
+    i=0
+    while i<10:
+        logger.debug("test log: %d" % i)
+        i+=1
     books=Book.objects.all()
 
     context={
