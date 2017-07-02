@@ -27,12 +27,17 @@ class Book(models.Model):
     stock=models.IntegerField(default=0)
     cover_image=models.ImageField(upload_to=cover_upload_path, default='books/empty_cover.jpg')
 
+    def __unicode__(self):
+        return "%s" % (self.title)
+
 
 class Review(models.Model):
     book=models.ForeignKey(Book)
     user=models.ForeignKey(User)
     publish_date=models.DateField(default=timezone.now)
     text=models.TextField()
+    latitude=models.FloatField(max_length=20, default=37.41920)
+    longitude = models.FloatField(max_length=20, default="122.8574")
 
 
 class Cart(models.Model):
