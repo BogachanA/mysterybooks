@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Book, BookOrder, Cart, Review
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -34,7 +34,7 @@ def store(request):
     return render(request, 'base.html', context)
 
 def book_details(request, book_id):
-    book=Book.objects.get(pk=book_id)
+    book=get_object_or_404(Book, id=book_id)
     context={
         'book':book,
     }
@@ -229,8 +229,9 @@ def order_error(request):
 def process_order(request, processor):
     if request.user.is_authenticated():
         if processor == "paypal":
-            payment_id=request.GET.get('payment_id')
-            cart=Cart.objects.filter(payment_id=payment_id) #FIXME cart items missing after paypal redirect
+            payment_id=request.GET.get('paymentId')
+            print payment_id
+            cart=Cart.objects.filter(payment_id=payment_id)
             orders=BookOrder.objects.filter(cart=cart)
             total=0
             for order in orders:
